@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>D3 tutorial </title> 
+		<script src="https://d3js.org/d3.v3.js"></script> 
+	</head>
+
+	<body>
+		<script type = "text/javascript">
+		// we'll write our D3 code here
+		// DOM提供给Javascript用来动态修改文档状态…
+
+
+		var data_values = [5,10,30,8,45,24,16,55,60,45,32,18,41,3];
+		var svg = d3.select("body").append("svg").style({"height":"500px","width":"500px"})   
+		// 上面這邊的style(height,width)會影響svg的圖形顯示範圍
+		var bars = svg.selectAll("rect").data(data_values).enter().append("rect").attr({"x":"30px", "y":"30px", "width":"25px", "height":function(d){return d*5;}});
+		bars.attr({"fill":"steelblue"})
+		bars.attr({"x":function(d,i){return i*30;} })  // i在這邊是data values的index
+		bars.attr({"y":function(d){ return 400-d*5;}})  
+
+		var max = d3.max(data_values);
+		var min = d3.min(data_values); 
+
+		bars.filter(function(d){return d==max;}).attr({"fill":"green"});
+		bars.filter(function(d){return d==min;}).attr({"fill":"red"}); 
+
+
+		// 參考資料：https://www.analyticsvidhya.com/blog/2017/07/beginner-guide-build-data-visualisations-web-d3-js/#comment-133306
+
+		</script> 
+
+	</body> 
+</html> 
+
+
+
+
+
